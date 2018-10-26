@@ -1,0 +1,63 @@
+---
+- hosts: webapi
+  gather_facts: no
+  environment:
+      console_ip: "192.168.56.102"
+  vars:
+    add_table: True
+    del_data: False
+    del_table: False
+
+  tasks:
+    - name: add refernce map
+      qradar_data:
+        token: "282d5950-ca6a-4cba-9015-19bccd9b784e"
+        ref_name: 'testtable'
+        ref_col_type: 'TABLE'
+        ref_data_type: 'ALN'
+        timetolive: "1 month"
+        ref_data: 
+           Server1:
+             IP: "127.0.0.1"
+             Owner: "IT services"
+             App: "DNS Services"
+           Server2:
+             IP: "10.0.0.1"
+             Owner: "IT services"
+             App: "AD Services"
+      when: add_table
+      register: result
+    - name: debug
+      debug:
+        var: result
+        verbosity: 0
+
+    - name: remove refernce map data
+      qradar_data:
+        token: "282d5950-ca6a-4cba-9015-19bccd9b784e"
+        ref_col_type: 'TABLE'
+        ref_name: 'testtable'
+        state: 'absent'
+        ref_data: 
+           Server2:
+             Owner: "IT services"
+      when: del_data
+      register: result
+    - name: debug
+      debug:
+        var: result
+        verbosity: 0
+
+    - name: remove refernce map
+      qradar_data:
+        token: "282d5950-ca6a-4cba-9015-19bccd9b784e"
+        ref_col_type: 'TABLE'
+        ref_name: 'testtable'
+        state: 'absent'
+      when: del_table
+      register: result
+    - name: debug
+      debug:
+        var: result
+        verbosity: 0
+

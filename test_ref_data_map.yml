@@ -1,0 +1,54 @@
+---
+- hosts: webapi
+  gather_facts: no
+  environment:
+      console_ip: "192.168.56.102"
+      token: "282d5950-ca6a-4cba-9015-19bccd9b784e"
+  vars:
+    add_map: True
+    del_data: False
+    del_map: True
+
+  tasks:
+    - name: add refernce map
+      qradar_data:
+        ref_name: 'testmap'
+        ref_col_type: 'MAP'
+        ref_data_type: 'IP'
+        timetolive: "1 month"
+        ref_data: 
+             server1: '10.0.0.1'
+             server2: '192.0.0.1' 
+      when: add_map
+      register: result
+    - name: debug
+      debug:
+        var: result
+        verbosity: 0
+
+    - name: remove refernce map data
+      qradar_data:
+        ref_col_type: 'MAP'
+        ref_name: 'testmap'
+        state: 'absent'
+        ref_data: 
+          server1: '10.0.0.1'
+      when: del_data
+      register: result
+    - name: debug
+      debug:
+        var: result
+        verbosity: 0
+
+    - name: remove refernce map
+      qradar_data:
+        ref_col_type: 'MAP'
+        ref_name: 'testmap'
+        state: 'absent'
+      when: del_map
+      register: result
+    - name: debug
+      debug:
+        var: result
+        verbosity: 0
+
