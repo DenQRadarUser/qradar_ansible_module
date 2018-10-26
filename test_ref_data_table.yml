@@ -9,7 +9,7 @@
     del_table: False
 
   tasks:
-    - name: add refernce map
+    - name: add reference map
       qradar_data:
         token: "282d5950-ca6a-4cba-9015-19bccd9b784e"
         ref_name: 'testtable'
@@ -32,7 +32,7 @@
         var: result
         verbosity: 0
 
-    - name: remove refernce map data
+    - name: remove reference map data
       qradar_data:
         token: "282d5950-ca6a-4cba-9015-19bccd9b784e"
         ref_col_type: 'TABLE'
@@ -48,7 +48,7 @@
         var: result
         verbosity: 0
 
-    - name: remove refernce map
+    - name: remove reference map
       qradar_data:
         token: "282d5950-ca6a-4cba-9015-19bccd9b784e"
         ref_col_type: 'TABLE'

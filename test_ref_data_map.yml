@@ -10,7 +10,7 @@
     del_map: True
 
   tasks:
-    - name: add refernce map
+    - name: add reference map
       qradar_data:
         ref_name: 'testmap'
         ref_col_type: 'MAP'
@@ -26,7 +26,7 @@
         var: result
         verbosity: 0
 
-    - name: remove refernce map data
+    - name: remove reference map data
       qradar_data:
         ref_col_type: 'MAP'
         ref_name: 'testmap'
@@ -40,7 +40,7 @@
         var: result
         verbosity: 0
 
-    - name: remove refernce map
+    - name: remove reference map
       qradar_data:
         ref_col_type: 'MAP'
         ref_name: 'testmap'
