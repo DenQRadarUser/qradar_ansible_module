@@ -88,7 +88,6 @@ from os import environ
 import requests
 import time
 import json
-import q
 
 class QRadarData:
     def __init__(self, module):
